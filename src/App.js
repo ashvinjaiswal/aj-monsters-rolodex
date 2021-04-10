@@ -10,21 +10,18 @@ class App extends Component{
     //set the state
     this.state = {
       string: 'Ashvin Jaiswal',
-      monsters:[
-        {
-          id:"mon1", 
-          name:"Frankstig"
-        },
-        {
-          id:"mon2", 
-          name:"Dracula"
-        },
-        {
-          id:"mon3", 
-          name:"Zombie"
-        }
-      ]
+      monsters:[]
     }
+  }
+
+  //LifeCycle Called immediately after a component is mounted. 
+  // Setting state here will trigger re-rendering.
+  componentDidMount(){
+    //fecth the data and render on the page
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(resp => resp.json())
+    .then(users => this.setState({monsters:users}))
+    
   }
 
  render(){
