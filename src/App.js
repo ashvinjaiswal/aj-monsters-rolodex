@@ -10,7 +10,8 @@ class App extends Component{
     //set the state
     this.state = {
       string: 'Ashvin Jaiswal',
-      monsters:[]
+      monsters:[],
+      searchField:''
     }
   }
 
@@ -27,6 +28,12 @@ class App extends Component{
  render(){
     return (
     <div className="App">
+      <input type='search' placeholder='seach monsters' onChange={e => {
+        //Call the callback to use the value as 
+        //second parmeter of setstate
+        //because its async operation in reacte
+        this.setState({ searchField: e.target.value }, () => console.log(this.state));
+      }}/>
       <CardList monsters= {this.state.monsters} />            
     </div>
   );
