@@ -26,15 +26,13 @@ class App extends Component{
   }
 
  render(){
+
+    const {monsters, searchField } = this.state;
+    const filterMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
     return (
     <div className="App">
-      <input type='search' placeholder='seach monsters' onChange={e => {
-        //Call the callback to use the value as 
-        //second parmeter of setstate
-        //because its async operation in reacte
-        this.setState({ searchField: e.target.value }, () => console.log(this.state));
-      }}/>
-      <CardList monsters= {this.state.monsters} />            
+      <input type='search' placeholder='seach monsters' onChange={e => this.setState({ searchField: e.target.value})}/>
+      <CardList monsters= {filterMonsters} />            
     </div>
   );
  }
